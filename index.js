@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
-app.post('/login', async (req, res) => {
-  console.log("received login request from client");
-  res.send("Hello");
-})
+const cors = require('cors');
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use(cors());
+
+//SET UP FOR EASIER FORM DATA PARSING
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const registerController = require("./register");
+app.post('/register', registerController.register);
+
+const loginController = require("./login");
+app.post('/login', loginController.login);
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
