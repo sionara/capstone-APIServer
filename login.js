@@ -9,12 +9,10 @@ exports.login = async (req, res) => {
     `SELECT * FROM users u WHERE u.email = ?`,
     [email],
     async (error, results) => {
-      console.log(results);
       if (error) throw error;
 
       if (results.length == 0) {
-        res.send("Invalid username and/or password");
-        res.sendStatus(404);
+        return res.send({ msg: "Could not find a user with that email" });
       } else {
         const hashedPassword = results[0].password;
 
@@ -28,19 +26,8 @@ exports.login = async (req, res) => {
               res.send({ name: results[0].name, msg: "success" });
             }
           );
-
-          // save session before redirection to new page
-          // to ensure session is saved
-          //     session.save(function (err) {
-          //       if (err) {
-          //         return next(err);
-          //       }
-          //       res.send("success!");
-          //     });
-          //   } else {
-          //     res.send("Invalid username and/or password");
-          //   }
-          // }
+        } else {
+          res.send({ msg: "Incorrect password" });
         }
       }
     }

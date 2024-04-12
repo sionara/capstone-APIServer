@@ -17,9 +17,9 @@ exports.register = (req, res) => {
         console.log(error);
       }
       if (results.length > 0) {
-        return res.send("Hello");
+        return res.send({ msg: "That email is already in use" });
       } else if (password !== confirmPassword) {
-        return res.send("send");
+        return res.send({ msg: "The passwords do not match" });
       }
 
       let hashedPwd = await bcrypt.hash(password, 8);
@@ -30,8 +30,9 @@ exports.register = (req, res) => {
         (error, results) => {
           if (error) {
             console.log(error);
+            res.send({ msg: error });
           } else {
-            return res.send({ name: name, msg: "success" });
+            res.send({ name: name, msg: "success" });
           }
         }
       );
