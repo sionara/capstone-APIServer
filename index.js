@@ -4,15 +4,7 @@ const path = require("path");
 const port = process.env.PORT || 4000;
 const cors = require("cors");
 
-const corsOpts = {
-  origin: "*",
-
-  methods: ["GET", "POST"],
-
-  allowedHeaders: ["Content-Type"],
-};
-
-app.use(cors(corsOpts));
+app.use(cors());
 
 //SET UP FOR EASIER FORM DATA PARSING
 app.use(express.urlencoded({ extended: true }));
