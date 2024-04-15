@@ -5,6 +5,7 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   // console.log(email, password);
   // we should check here if the req body is empty.
+  res.setHeader("Access-Control-Allow-Origin", "*");
   db.query(
     `SELECT * FROM users u WHERE u.email = ?`,
     [email],

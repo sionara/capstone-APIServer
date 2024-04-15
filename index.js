@@ -5,16 +5,11 @@ const port = process.env.PORT || 4000;
 const cors = require("cors");
 
 const corsOpts = {
-  origin: '*',
+  origin: "*",
 
-  methods: [
-    'GET',
-    'POST',
-  ],
+  methods: ["GET", "POST"],
 
-  allowedHeaders: [
-    'Content-Type',
-  ],
+  allowedHeaders: ["Content-Type"],
 };
 
 app.use(cors(corsOpts));
@@ -24,9 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const registerController = require("./register");
-app.post("/register", registerController.register) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-};
+app.post("/register", registerController.register);
 
 const loginController = require("./login");
 app.post("/login", loginController.login);
