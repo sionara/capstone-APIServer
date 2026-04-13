@@ -16,4 +16,7 @@ app.post("/register", registerController.register);
 const loginController = require("../login");
 app.post("/login", loginController.login);
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+//app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// 04-13 2026 - vercel deployment CORS error
+module.exports = app;
