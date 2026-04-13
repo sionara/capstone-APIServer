@@ -6,7 +6,7 @@ exports.register = (req, res) => {
   // const email = req.body.email;
   // const pwd = req.body.password;
   // const confirmPwd = req.body.confirmPwd;
-  res.setHeader("Access-Control-Allow-Origin", "*");
+ // res.setHeader("Access-Control-Allow-Origin", "*"); -- let index.js handle cors exclusively to avoid conflicts
 
   const { name, email, password, confirmPassword } = req.body;
   console.log(name);
