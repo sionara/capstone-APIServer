@@ -1,5 +1,6 @@
 //import mysql for db
-const mysql = require("mysql");
+// 04-13-2026: updated to mysql2 to allow SSL for avian hosting
+const mysql = require("mysql2");
 //global variables
 const dotenv = require("dotenv");
 dotenv.config();
