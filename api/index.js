@@ -4,7 +4,15 @@ const path = require("path");
 const port = process.env.PORT || 4000;
 const cors = require("cors");
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://capstone-game-ui.vercel.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); //Handle Pre-flight errors
 
 //SET UP FOR EASIER FORM DATA PARSING
 app.use(express.urlencoded({ extended: true }));
